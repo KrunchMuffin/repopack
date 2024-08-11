@@ -6,4 +6,5 @@ export interface OutputGeneratorContext {
   treeString: string;
   processedFiles: ProcessedFile[];
   config: RepopackConfigMerged;
+  projectInstruction: string;
 }

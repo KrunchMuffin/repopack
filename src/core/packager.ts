@@ -55,7 +55,7 @@ export const pack = async (
   const processedFiles = await deps.processFiles(safeRawFiles, config);
 
   // Generate output
-  const output = await deps.generateOutput(config, processedFiles, safeFilePaths);
+  const output = await deps.generateOutput(rootDir, config, processedFiles, safeFilePaths);
 
   // Write output to file
   const outputPath = path.resolve(rootDir, config.output.filePath);

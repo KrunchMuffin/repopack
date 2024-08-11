@@ -253,6 +253,7 @@ Here's an explanation of the configuration options:
 |`output.filePath`| The name of the output file | `"repopack-output.txt"` |
 |`output.style`| The style of the output (`plain`, `xml`) |`"plain"`|
 |`output.headerText`| Custom text to include in the file header |`null`|
+|`output.instructionFilePath`| Path to a file containing detailed project instructions |`null`|
 |`output.removeComments`| Whether to remove comments from supported file types | `false` |
 |`output.removeEmptyLines`| Whether to remove empty lines from the output | `false` |
 |`output.showLineNumbers`| Whether to add line numbers to each line in the output |`false`|
@@ -283,6 +284,45 @@ Example configuration:
   }
 }
 ```
+
+### Using `instructionFilePath` Option
+The `instructionFilePath` option allows you to specify a separate file containing detailed instructions or context about your project. This can be useful for providing AI systems with more comprehensive information about your codebase, coding standards, or specific areas to focus on during analysis.
+
+Here's an example of how you might use this feature:
+
+1. Create a file named `repopack-instruction.md` in your project root:
+
+```markdown
+# Project Analysis Instructions
+
+## Code Structure
+- The `src/core` directory contains the main business logic
+- Unit tests are located in `tests/unit`
+- Integration tests are in `tests/integration`
+
+## Coding Standards
+- We follow the Airbnb JavaScript Style Guide
+- All new features should have corresponding unit tests
+- Aim for 80% code coverage on new code
+
+## Focus Areas
+- Performance optimization in the data processing module
+- Improving error handling and logging
+- Refactoring the authentication system for better scalability
+```
+
+2. In your `repopack.config.json`, add the `instructionFilePath` option:
+
+```json5
+{
+  "output": {
+    "instructionFilePath": "repopack-instruction.md",
+    // other options...
+  }
+}
+```
+
+When Repopack generates the output, it will include the contents of `repopack-instruction.md` in a dedicated section. This allows AI systems to understand the specific context and requirements of your project, potentially leading to more relevant and tailored analysis or suggestions.
 
 ### Include and Ignore
 #### Include Patterns

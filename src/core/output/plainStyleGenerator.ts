@@ -4,7 +4,7 @@ const PLAIN_SEPARATOR = '='.repeat(16);
 const PLAIN_LONG_SEPARATOR = '='.repeat(64);
 
 export const generatePlainStyle = (data: OutputGeneratorContext): string => {
-  const { generationDate, treeString, processedFiles, config } = data;
+  const { generationDate, treeString, processedFiles, config, projectInstruction } = data;
 
   let output = `${PLAIN_LONG_SEPARATOR}
 Repopack Output File
@@ -32,12 +32,14 @@ The content is organized as follows:
 
 Usage Guidelines:
 -----------------
-1. This file should be treated as read-only. Any changes should be made to the
+- This file should be treated as read-only. Any changes should be made to the
   original repository files, not this packed version.
-2. When processing this file, use the separators and "File:" markers to
+- When processing this file, use the separators and "File:" markers to
   distinguish between different files in the repository.
-3. Be aware that this file may contain sensitive information. Handle it with
+- Be aware that this file may contain sensitive information. Handle it with
   the same level of security as you would the original repository.
+${config.output.headerText ? '- Pay special attention to the Project Summary. These contain important context and guidelines specific to this project.' : ''}
+${projectInstruction ? '- Pay special attention to the Project Instruction. These contain important context and guidelines specific to this project.' : ''}
 
 Notes:
 ------
@@ -54,9 +56,17 @@ For more information about Repopack, visit: https://github.com/yamadashy/repopac
 `;
 
   if (config.output.headerText) {
-    output += `Additional User-Provided Header:
+    output += `Project Summary:
 --------------------------------
 ${config.output.headerText}
+
+`;
+  }
+
+  if (projectInstruction) {
+    output += `Project Instruction:
+---------------------------------------
+${projectInstruction}
 
 `;
   }

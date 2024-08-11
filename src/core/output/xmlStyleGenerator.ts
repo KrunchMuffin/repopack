@@ -1,7 +1,7 @@
 import { OutputGeneratorContext } from './outputGeneratorTypes.js';
 
 export const generateXmlStyle = (data: OutputGeneratorContext): string => {
-  const { generationDate, treeString, processedFiles, config } = data;
+  const { generationDate, treeString, processedFiles, config, projectInstruction } = data;
 
   let xml = `<summary>
 
@@ -26,12 +26,14 @@ The content is organized as follows:
 </file_format>
 
 <usage_guidelines>
-1. This file should be treated as read-only. Any changes should be made to the
+- This file should be treated as read-only. Any changes should be made to the
   original repository files, not this packed version.
-2. When processing this file, use the file path attributes to distinguish
+- When processing this file, use the file path attributes to distinguish
   between different files in the repository.
-3. Be aware that this file may contain sensitive information. Handle it with
+- Be aware that this file may contain sensitive information. Handle it with
   the same level of security as you would the original repository.
+${config.output.headerText ? '- Pay special attention to the project_summary. These contain important context and guidelines specific to this project.' : ''}
+${projectInstruction ? '- Pay special attention to the project_instruction. These contain important context and guidelines specific to this project.' : ''}
 </usage_guidelines>
 
 <notes>
@@ -49,9 +51,17 @@ For more information about Repopack, visit: https://github.com/yamadashy/repopac
 
   if (config.output.headerText) {
     xml += `
-<user_provided_header>
+<project_summary>
 ${config.output.headerText}
-</user_provided_header>
+</project_summary>
+`;
+  }
+
+  if (projectInstruction) {
+    xml += `
+<project_instruction>
+${projectInstruction}
+</project_instruction>
 `;
   }
 

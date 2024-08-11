@@ -24,12 +24,14 @@ The content is organized as follows:
 
 Usage Guidelines:
 -----------------
-1. This file should be treated as read-only. Any changes should be made to the
+- This file should be treated as read-only. Any changes should be made to the
   original repository files, not this packed version.
-2. When processing this file, use the separators and "File:" markers to
+- When processing this file, use the separators and "File:" markers to
   distinguish between different files in the repository.
-3. Be aware that this file may contain sensitive information. Handle it with
+- Be aware that this file may contain sensitive information. Handle it with
   the same level of security as you would the original repository.
+- Pay special attention to the Project Summary. These contain important context and guidelines specific to this project.
+
 
 Notes:
 ------
@@ -43,7 +45,7 @@ Notes:
 
 For more information about Repopack, visit: https://github.com/yamadashy/repopack
 
-Additional User-Provided Header:
+Project Summary:
 --------------------------------
 This repository is simple-project
 

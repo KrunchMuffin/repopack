@@ -1,3 +1,4 @@
+import process from 'node:process';
 import { expect, test, describe } from 'vitest';
 import { generateOutput } from '../../../src/core/output/outputGenerator.js';
 import { createMockConfig } from '../../testing/testUtils.js';
@@ -20,7 +21,7 @@ describe('outputGenerator', () => {
       { path: 'dir/file2.txt', content: 'content2' },
     ];
 
-    const output = await generateOutput(mockConfig, mockProcessedFiles, []);
+    const output = await generateOutput(process.cwd(), mockConfig, mockProcessedFiles, []);
 
     expect(output).toContain('Repopack Output File');
     expect(output).toContain('File: file1.txt');
